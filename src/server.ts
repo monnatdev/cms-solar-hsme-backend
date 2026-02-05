@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || '3001', 10);
 
 // CORS configuration to allow requests from Frontend
 const corsOptions = {
@@ -41,9 +41,10 @@ const start = async () => {
     });
 
     // Start Express server
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
-      console.log(`Admin panel: http://localhost:${PORT}/admin`);
+    // Bind to 0.0.0.0 for Railway deployment
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server is running on port ${PORT}`);
+      console.log(`Admin panel: /admin`);
     });
   } catch (error) {
     console.error('Error starting server:', error);

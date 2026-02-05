@@ -73,10 +73,16 @@ export default buildConfig({
   // CORS configuration
   cors: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
+    'https://your-site.vercel.app',
+    'https://*.vercel.app', // สำหรับ preview deployments
+    'http://localhost:3001', // สำหรับ local development
   ],
 
   // CSRF protection
   csrf: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
+    'https://your-site.vercel.app',
+    'https://*.vercel.app',
+    'http://localhost:3001',
   ],
 });
